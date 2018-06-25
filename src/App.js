@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+
+import AboutUs from './aboutComponent';
+
 import logo from './logo.svg';
 import './App.css';
 
@@ -10,14 +13,7 @@ class App extends Component {
     return (
       <div className="App">
         <NavBar logo={logo} />
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          
-          <h1 className="App-title">{txt}</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.         
-        </p>
+        <AboutUs />
         {/* Present a prop inside the component */}
         <Welcome  name="Aderito" age="26"/>
          {/* Alternative way to present a prop inside the component */}
@@ -32,32 +28,46 @@ class App extends Component {
 
 class NavBar extends Component{
   render(){
+    
     const {logo} = this.props
     return(
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#"><img className="App-logo" alt="logo" src={ logo } /></a>
+        <a className="navbar-brand" href="#"><img className="App-logo" alt="logo" src={ logo } /></a>
 
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
+        <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
+          <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+           <Links />
           </ul>
         </div>
     </nav>
-
+    
     );
   }
 }
+
+class Links extends Component {
+  render(){
+    const links = {
+      'Home': 'https://google.pt',
+      'About us': 'https://youtube.pt'
+    }
+    return (
+      <div>
+        {
+          Object.keys(links).map((key, index) => ( 
+            <li className="nav-item">
+              <a className="nav-link" href={links[key]}>{key}</a>
+            </li>
+          ))
+        }
+      </div>
+    )
+  }
+  }
+
 
 
 {/* One of the ways to declare props */}
